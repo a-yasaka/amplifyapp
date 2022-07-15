@@ -4,6 +4,7 @@ import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
 
 import './App.css';
+import '@aws-amplify/ui-react/styles.css';
 
 import Amplify from '@aws-amplify/core';
 import { withAuthenticator } from '@aws-amplify/ui-react';
@@ -42,7 +43,7 @@ Amplify.configure(awsmobile);
 
 const initialFormState = { name: '', description: '' }
 
-function App({signOut}) {
+function App({signOut,user}) {
   const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
 
@@ -94,6 +95,7 @@ function App({signOut}) {
         }
       </div>
       <button onClick={signOut}>Sign Out</button>
+      <h2>{user.username}</h2>
     </div>
   );
 }
