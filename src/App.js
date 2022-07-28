@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
+import{I18n} from 'aws-amplify';
 
 import './App.css';
+import {Button} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import Amplify from '@aws-amplify/core';
 import { withAuthenticator } from '@aws-amplify/ui-react';
+
+
+I18n.setLanguage('ja');
 
 const awsmobile = {
   "aws_project_region": "ap-northeast-1",
@@ -94,6 +99,7 @@ function App({signOut,user}) {
           ))
         }
       </div>
+      <Button onClick={()=>signOut}>Sign Out</Button>
       <button onClick={signOut}>Sign Out</button>
       <h2>{user.username}</h2>
     </div>
